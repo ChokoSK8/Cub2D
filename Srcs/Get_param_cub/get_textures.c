@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:56:59 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 14:09:39 by abrun            ###   ########.fr       */
+/*   Updated: 2022/01/31 17:10:26 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_so_path(t_param *param, char *line)
 		return (0);
 	path = malloc(ft_strlen(line));
 	if (!path)
-		return (0);
+		return (error_malloc());
 	c = 0;
 	while (line[c] && line[c] != '/')
 		c++;
@@ -34,8 +34,7 @@ int	get_so_path(t_param *param, char *line)
 	if (!param->so)
 	{
 		free(path);
-		ft_putstr_fd("Error\nUn malloc a échoué !\n", 2);
-		return (0);
+		return (error_malloc());
 	}
 	free(path);
 	return (2);
@@ -51,7 +50,7 @@ int	get_ea_path(t_param *param, char *line)
 		return (0);
 	path = malloc(ft_strlen(line));
 	if (!path)
-		return (0);
+		return (error_malloc());
 	c = 0;
 	while (line[c] && line[c] != '/')
 		c++;
@@ -63,8 +62,7 @@ int	get_ea_path(t_param *param, char *line)
 	if (!param->ea)
 	{
 		free(path);
-		ft_putstr_fd("Error\nUn malloc a échoué !\n", 2);
-		return (0);
+		return (error_malloc());
 	}
 	free(path);
 	return (3);
@@ -80,7 +78,7 @@ int	get_we_path(t_param *param, char *line)
 		return (0);
 	path = malloc(ft_strlen(line));
 	if (!path)
-		return (0);
+		return (error_malloc());
 	c = 0;
 	while (line[c] && line[c] != '/')
 		c++;
@@ -92,8 +90,7 @@ int	get_we_path(t_param *param, char *line)
 	if (!param->we)
 	{
 		free(path);
-		ft_putstr_fd("Error\nUn malloc a échoué !\n", 2);
-		return (0);
+		return (error_malloc());
 	}
 	free(path);
 	return (4);
@@ -109,7 +106,7 @@ int	get_no_path(t_param *param, char *line)
 		return (0);
 	path = malloc(ft_strlen(line));
 	if (!path)
-		return (0);
+		return (error_malloc());
 	c = 0;
 	while (line[c] && line[c] != '/')
 		c++;
@@ -121,8 +118,7 @@ int	get_no_path(t_param *param, char *line)
 	if (!param->no)
 	{
 		free(path);
-		ft_putstr_fd("Error\nUn malloc a échoué !\n", 2);
-		return (0);
+		return (error_malloc());
 	}
 	free(path);
 	return (1);

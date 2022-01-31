@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 15:18:03 by abrun             #+#    #+#             */
-/*   Updated: 2021/11/02 14:00:35 by abrun            ###   ########.fr       */
+/*   Updated: 2022/01/31 17:21:36 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int					ft_isdigit(char c);
 int					ft_atoi(const char *str);
 
 void				ft_bzero(void *s, size_t n);
-
-void				*ft_calloc(size_t count, size_t size);
 
 int					ft_isalpha(int c);
 

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 16:11:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/26 09:45:23 by abrun            ###   ########.fr       */
+/*   Updated: 2022/01/31 14:36:18 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,15 +112,11 @@ t_vect	get_pt_v(t_param param, t_map map, double angle)
 		get_pt_a_vert(param.hero, &pt_a, map, angle);
 	get_vector_vert(angle, map.len_pix, &vector);
 	loc = is_wall_vert(pt_a, angle, param);
-	if (loc.ret == 2 && !is_print_dist(loc, param.hero.vec, pt_a, param))
-		loc.ret = 0;
 	while (!loc.ret)
 	{
 		pt_a.x += vector.x;
 		pt_a.y += vector.y;
 		loc = is_wall_vert(pt_a, angle, param);
-		if (loc.ret == 2 && !is_print_dist(loc, param.hero.vec, pt_a, param))
-			loc.ret = 0;
 	}
 	pt_a.loc = loc;
 	return (pt_a);

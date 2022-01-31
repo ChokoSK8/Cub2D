@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 16:12:05 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/06 15:52:45 by abrun            ###   ########.fr       */
+/*   Updated: 2022/01/31 14:36:08 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,15 +116,11 @@ t_vect	get_pt_h(t_param param, t_map map, double angle)
 		get_pt_a_hori(param.hero, &pt_a, map, angle);
 	get_vector(angle, map.len_pix, &vector);
 	loc = is_wall_horizontal(pt_a, angle, param);
-	if (loc.ret == 2 && !is_print_dist(loc, param.hero.vec, pt_a, param))
-		loc.ret = 0;
 	while (!loc.ret)
 	{
 		pt_a.x += vector.x;
 		pt_a.y += vector.y;
 		loc = is_wall_horizontal(pt_a, angle, param);
-		if (loc.ret == 2 && !is_print_dist(loc, param.hero.vec, pt_a, param))
-			loc.ret = 0;
 	}
 	pt_a.loc = loc;
 	return (pt_a);

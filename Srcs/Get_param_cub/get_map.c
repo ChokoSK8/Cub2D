@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:59:57 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 14:18:24 by abrun            ###   ########.fr       */
+/*   Updated: 2022/01/31 18:08:17 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	fill_tab_map(char *line, int fd, t_param *param)
 		{
 			free_tab_checks(param);
 			free(line);
+			if (tab)
+				free(tab);
 			ft_putstr_fd("Error\nUn malloc a echoue\n", 2);
 			return (0);
 		}
@@ -49,6 +51,7 @@ char	**get_map(char *tab, t_param *param)
 	if (!map)
 	{
 		free_tab_checks(param);
+		free(tab);
 		ft_putstr_fd("Error\nUn malloc a échoué !\n", 2);
 		return (0);
 	}
@@ -63,9 +66,11 @@ int	loop_get_map(char *tab, char **map, int max_width, t_param *param)
 {
 	int	i;
 	int	j;
+	int	c;
 
 	i = 0;
-	while (*tab)
+	c = 0;
+	while (tab[c])
 	{
 		j = 0;
 		map[i] = malloc(sizeof(int) * (max_width + 1));
@@ -73,15 +78,16 @@ int	loop_get_map(char *tab, char **map, int max_width, t_param *param)
 		{
 			ft_putstr_fd("Error\nUn malloc a échoué !\n", 2);
 			free_in_loop(param, i, map);
+			free(tab);
 			return (0);
 		}
-		while (*tab && *tab != '\n')
-			map[i][j++] = *tab++;
+		while (tab[c] && tab[c] != '\n')
+			map[i][j++] = tab[c++];
 		while (j < max_width)
 			map[i][j++] = 32;
 		map[i++][j] = 0;
-		if (*tab)
-			tab++;
+		if (tab[c])
+			c++;
 	}
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:43:55 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 13:55:18 by abrun            ###   ########.fr       */
+/*   Updated: 2022/01/31 14:49:34 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	display_multi_angle(t_param *param)
 	angle = 0;
 	n_wall = 0;
 	c = 15;
-	printf("hey\n");
 	while (n_wall < param->width)
 	{
 		angle = get_angle_right(param->hero.angle, c);

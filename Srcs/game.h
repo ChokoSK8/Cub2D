@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 13:56:23 by abrun            ###   ########.fr       */
+/*   Updated: 2022/01/31 17:07:32 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -401,9 +401,6 @@ t_point				get_hero(char **map);
 
 char				*get_final_data(t_img img, t_param param);
 
-int					is_print_dist(t_loc loc, t_vector hero,
-						t_vect pt, t_param param);
-
 t_line				get_line_2_pts(t_vect pt_1, t_vector pt_2);
 
 t_line				get_d_perpendicular(t_line d, t_vect pt);
@@ -418,12 +415,6 @@ t_vector			get_end(t_line d, t_vect cen, double angle,
 t_vect				get_inter(t_line d_1, t_line d_2);
 
 int					is_print(t_vect pt, t_vector end_1, t_vector end_2);
-
-int					is_printable(t_vect pt, t_vector end_1,
-						t_vector end_2, t_vect pt_a);
-
-int					is_print_dist(t_loc loc, t_vector hero,
-						t_vect pt, t_param param);
 
 void				change_end_2(t_vector *e, t_vector d);
 
@@ -516,4 +507,6 @@ void				ft_putstr_char(char *s, char id, int fd);
 int					destroy_win(t_param *param);
 
 int					display(t_param *param);
+
+int					error_malloc(void);
 #endif

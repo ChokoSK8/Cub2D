@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:58:31 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 14:12:01 by abrun            ###   ########.fr       */
+/*   Updated: 2022/01/31 14:46:38 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ int	get_param_cub(t_param *param)
 
 char	*fill_elements(t_param *param, int fd, char *line)
 {
-	int	done;
 	int	ret;
 
-	done = 0;
-	while (!done)
+	ret = 1;
+	while (ret != 9 && ret)
 	{
 		line = get_element(fd, param);
 		if (!line)
@@ -58,10 +57,10 @@ char	*fill_elements(t_param *param, int fd, char *line)
 			return (0);
 		}
 		if (ret != 9)
+		{
 			param->checks[ret - 1] = 1;
-		done = is_map(line);
-		if (!done)
 			free(line);
+		}
 	}
 	return (line);
 }
@@ -102,7 +101,9 @@ int	fill_param(t_param *param, char *line)
 		return (get_color(line, param, 'C'));
 	else if (ft_strnchr(line, 'F', 1))
 		return (get_color(line, param, 'F'));
-	return (9);
+	else if (is_map(line))
+		return (9);
+	return (0);
 }
 
 int	is_map(char *line)

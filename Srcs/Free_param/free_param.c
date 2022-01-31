@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:23:18 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 13:42:24 by abrun            ###   ########.fr       */
+/*   Updated: 2022/01/31 16:58:42 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	free_param(t_param *param)
 
 	counter = 0;
 	free(param->no);
-	free(param->sp);
 	free(param->so);
 	free(param->ea);
 	free(param->we);
@@ -30,7 +29,6 @@ void	free_param(t_param *param)
 	mlx_destroy_image(param->mlx, param->walls.wall2.img.image);
 	mlx_destroy_image(param->mlx, param->walls.wall3.img.image);
 	mlx_destroy_image(param->mlx, param->walls.wall4.img.image);
-	mlx_destroy_image(param->mlx, param->walls.sprite.img.image);
 	while (param->map.map[counter])
 		free(param->map.map[counter++]);
 	free(param->map.map);

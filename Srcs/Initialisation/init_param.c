@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 14:20:03 by abrun            ###   ########.fr       */
+/*   Updated: 2022/01/31 14:49:48 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,22 @@ int	init_param(t_param *param)
 {
 	param->mlx = mlx_init();
 	mlx_get_screen_size(param->mlx, &param->max_w, &param->max_h);
+	param->width = param->max_w * 0.9;
+	param->height = param->max_h * 0.9;
 	init_checks(param);
 	if (!get_param_cub(param))
 		return (0);
 	if (!(init_map(&param->map, param->tab, param)))
 		return (0);
-	printf("hey4\n");
 	init_wall1_img(&param->walls.wall1, *param);
-	printf("hey9\n");
 	init_wall2_img(&param->walls.wall2, *param);
-	printf("hey1\n");
 	init_wall3_img(&param->walls.wall3, *param);
-	printf("hey2\n");
 	init_wall4_img(&param->walls.wall4, *param);
-	printf("hey3\n");
 	param->d_max = get_dist_max(param->map);
-	printf("hey5\n");
 	init_img(&param->img, *param);
-	printf("hey6\n");
 	param->win = mlx_new_window(param->mlx, param->width,
 			param->height, "Cub3D");
-	printf("hey7\n");
 	init_hero(&param->hero, param->map);
-	printf("hey8\n");
 	return (1);
 }
 
