@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_all.c                                        :+:      :+:    :+:   */
+/*   error_file_wall.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 10:45:11 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/02 13:07:07 by abrun            ###   ########.fr       */
+/*   Created: 2022/02/02 12:24:34 by abrun             #+#    #+#             */
+/*   Updated: 2022/02/02 12:52:23 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../game.h"
 
-int	check_all(int *checks, t_param *param)
+void	error_file_wall(t_param *param, char *file)
 {
-	int		counter;
-
-	counter = 0;
-	while (counter < 6)
-	{
-		if (checks[counter] != 1)
-		{
-			ft_putstr_fd("Error\nIl n'y a pas tout les éléments !\n", 1);
-			free_tab_checks(param);
-			return (0);
-		}
-		counter++;
-	}
-	return (1);
+	ft_putstr_fd("Error\nLe fichier ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putstr_fd(" n'est pas valide\n", 2);
+	free_init_walls(param);
+	free_mlx(param);
+	exit(1);
 }

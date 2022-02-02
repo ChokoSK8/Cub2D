@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 14:13:27 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 14:10:04 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/02 13:14:32 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	check_syntaxe(char *s, size_t len, char *line, char *id)
 {
 	if (!ft_strnstr(line, s, len))
 	{
-		ft_putstr_str("Error\nErreur de syntaxe pour l'élément :", id, 2);
+		ft_putstr_str("Error\nErreur de syntaxe pour l'élément : ", id, 2);
 		return (0);
 	}
 	return (1);

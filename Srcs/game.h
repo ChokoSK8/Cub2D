@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 17:07:32 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/02 12:48:49 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,8 @@ void				init_img(t_img *img, t_param param);
 
 void				init_hero(t_player *hero, t_map map);
 
+void				init_walls(t_param *param);
+
 void				init_wall1_img(t_wall *wall, t_param param);
 
 void				init_wall2_img(t_wall *wall, t_param param);
@@ -265,6 +267,8 @@ void				init_wall2_img(t_wall *wall, t_param param);
 void				init_wall3_img(t_wall *wall, t_param param);
 
 void				init_wall4_img(t_wall *wall, t_param param);
+
+void				error_file_wall(t_param *param, char *file);
 
 void				init_sprite_img(t_wall *wall, t_param param);
 
@@ -354,7 +358,14 @@ void				free_map_param(t_param *param);
 
 void				free_in_loop(t_param *param, int i, char **map);
 
+void				free_in_loop_tab(t_param *param, int i, char **map,
+						char *tab);
+
 void				free_mlx(t_param *param);
+
+void				free_init_walls(t_param *param);
+
+int					free_wall(t_param *param, void *img);
 
 int					is_surrounded(int height, int width, char **map);
 

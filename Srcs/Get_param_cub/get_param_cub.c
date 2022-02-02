@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:58:31 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 14:46:38 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/02 12:58:01 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	fill_param(t_param *param, char *line)
 		return (get_color(line, param, 'F'));
 	else if (is_map(line))
 		return (9);
+	printf("Error\nLa ligne \"%s\" est invalide\n", line);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 14:49:48 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/02 14:02:58 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	init_param(t_param *param)
 		return (0);
 	if (!(init_map(&param->map, param->tab, param)))
 		return (0);
-	init_wall1_img(&param->walls.wall1, *param);
-	init_wall2_img(&param->walls.wall2, *param);
-	init_wall3_img(&param->walls.wall3, *param);
-	init_wall4_img(&param->walls.wall4, *param);
+	init_walls(param);
 	param->d_max = get_dist_max(param->map);
 	init_img(&param->img, *param);
 	param->win = mlx_new_window(param->mlx, param->width,

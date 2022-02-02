@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 13:55:20 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 14:11:24 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/02 12:50:16 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	main(int ac, char **av)
 	if (ac < 2 || !check_file(av[1]))
 	{
 		ft_putstr_fd("Il n'y pas de *.cub passé en argument !\n", 2);
-		return (0);
+		return (1);
 	}
 	param.cub = av[1];
 	if (!init_param(&param))
-		return (0);
+		return (1);
 	param.img_map.image = mlx_new_image(param.mlx,
 			param.map.max_width * param.map.len_pix,
 			param.map.height * param.map.len_pix);

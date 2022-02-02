@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:23:18 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 16:58:42 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/02 13:22:38 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	free_tab_checks(t_param *param)
 void	free_map_param(t_param *param)
 {
 	free(param->no);
-	free(param->sp);
 	free(param->so);
 	free(param->ea);
 	free(param->we);

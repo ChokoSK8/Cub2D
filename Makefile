@@ -4,7 +4,7 @@ LIB_MLX		= Minilibx-linux/libmlx.a Minilibx-linux/libmlx_Linux.a
 
 LIB		= Libft/libft.a
 
-SRCS		= Free_param/free_param.c Free_param/destroy_win.c \
+SRCS		= Free_param/free_param.c Free_param/destroy_win.c Free_param/free_param_2.c\
 	Checks/Check_elements/check_all.c Checks/Check_elements/check_elements.c \
 	Checks/Check_map/check_map.c Checks/Check_map/is_surrounded.c Checks/Check_map/is_space_in_map.c \
 	Checks/check_file.c \
@@ -13,7 +13,8 @@ SRCS		= Free_param/free_param.c Free_param/destroy_win.c \
 	Gameplay/move_hero.c Gameplay/move_hero_utils.c \
 	Get_distances/get_dist_hori.c Get_distances/get_dist_utils.c Get_distances/get_dist_vert.c Get_distances/get_dist_vert_utils.c \
 	Get_param_cub/get_color.c Get_param_cub/get_map.c Get_param_cub/get_map_utils.c Get_param_cub/get_param_cub.c Get_param_cub/get_textures.c \
-	Initialisation/init_hero_utils.c Initialisation/init_param.c Initialisation/init_param_utils.c Initialisation/init_walls.c \
+	Initialisation/init_hero_utils.c Initialisation/init_param.c Initialisation/init_param_utils.c \
+	Initialisation/Init_walls/init_walls.c Initialisation/Init_walls/error_file_wall.c \
 	Tools/get_next_line.c Tools/ft_putstr_str.c Tools/error_malloc.c \
 	main.c
 
