@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 14:13:27 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/02 13:14:32 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/09 10:45:16 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	check_texture(char *id, char *line, int ret)
 		return (0);
 	line += 2;
 	fd = open(line, O_RDONLY);
-	if (fd < 0 || ret)
+	if (fd < 2 || ret)
 	{
 		ft_putstr_str("Error\nIl y a un probleme avec la texture : ", id, 2);
 		if (ret && fd > 0)

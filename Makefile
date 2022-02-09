@@ -1,3 +1,14 @@
+# Colors
+C_GREY		=	\e[1;30m
+C_RED		=	\e[1;31m
+C_GREEN		=	\e[1;32m
+C_YELLOW	=	\e[1;33m
+C_BLUE		=	\e[1;34m
+C_PURPLE	=	\e[1;35m
+C_CYAN		=	\e[1;36m
+C_WHITE		=	\e[1;37m
+C_END		=	\e[0m
+
 NAME		= cub3D
 
 LIB_MLX		= Minilibx-linux/libmlx.a Minilibx-linux/libmlx_Linux.a
@@ -39,31 +50,34 @@ FLAGS			= -Wall -Wextra -Werror
 MLX_FLAGS		= -lm -lX11 -lXext
 
 %.o: %.c
-			clang $(FLAGS) $(INC) -o $@ -c $?
+		@gcc -g $(FLAGS) $(INC) -o $@ -c $?
 
 all:	$(NAME)
 
 mlx:	$(LIB_MLX)
 
-lib:
-		make -C Libft
 
-mlx_t:
-		make -C Minilibx-linux
-		ranlib $(LIB_MLX)
-
-$(NAME): lib mlx_t $(OBJS)
-	clang $(FLAGS) $(OBJS) $(LIB) $(LIB_MLX) $(MLX_FLAGS) -o $(NAME)
+$(NAME):	$(OBJS)
+	@echo "[$(C_GREEN)COMPILING Libft$(C_END)]"
+	@make -C Libft
+	@echo "[$(C_CYAN)COMPILING Minilibx$(C_END)]"
+	@make -C Minilibx-linux
+	@echo "[$(C_YELLOW)CREATING Cub3D$(C_END)]"
+	@gcc $(FLAGS) -o $(NAME) $(OBJS) $(LIB) $(LIB_MLX) $(MLX_FLAGS)
+	@echo "[$(C_PURPLE)Cub3D ready to be used$(C_END)]"
 
 clean:
-		$(RM) $(OBJS)
-		make clean -C Libft
-		make clean -C Minilibx-linux
+	@echo "[$(C_BLUE)CLEANING objects$(C_END)]"
+	@$(RM) $(OBJS)
+	@echo "[$(C_RED)CLEANING Libft$(C_END)]"
+	@make clean -C Libft
+	@echo "[$(C_WHITE)CLEANING Minilibx$(C_END)]"
+	@make clean -C Minilibx-linux
 
 fclean:		clean
-			$(RM) $(NAME)
-			make fclean -C Libft
+	@$(RM) $(NAME)
+	@make fclean -C Libft
 
-re:			fclean all
+re:		fclean all
 
 .PHONY:		all clean fclean re

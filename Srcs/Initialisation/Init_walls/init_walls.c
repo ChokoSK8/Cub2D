@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:38:09 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/02 13:00:49 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/04 11:23:41 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ void	init_walls(t_param *param)
 
 void	init_wall4_img(t_wall *wall, t_param param)
 {
-	wall->img.image = mlx_xpm_file_to_image(param.mlx, param.we,
+	wall->img.image = mlx_xpm_file_to_image(param.mlx, param.ea,
 			&wall->img.width, &wall->img.height);
 	if (!wall->img.image)
-		error_file_wall(&param, param.we);
+		error_file_wall(&param, param.ea);
 	wall->img.data = mlx_get_data_addr(wall->img.image, &wall->img.bpp,
 			&wall->img.size_line, &wall->img.endian);
 }
 
 void	init_wall3_img(t_wall *wall, t_param param)
 {
-	wall->img.image = mlx_xpm_file_to_image(param.mlx, param.ea,
+	wall->img.image = mlx_xpm_file_to_image(param.mlx, param.we,
 			&wall->img.width, &wall->img.height);
 	if (!wall->img.image)
-		error_file_wall(&param, param.ea);
+		error_file_wall(&param, param.we);
 	wall->img.data = mlx_get_data_addr(wall->img.image, &wall->img.bpp,
 			&wall->img.size_line, &wall->img.endian);
 }

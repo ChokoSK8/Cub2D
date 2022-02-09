@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:38:54 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/02 13:54:30 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/04 11:25:24 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_angle(t_map map)
 {
 	if (map.dir == 'N')
 		return (0);
-	else if (map.dir == 'W')
+	else if (map.dir == 'E')
 		return (270);
 	else if (map.dir == 'S')
 		return (180);

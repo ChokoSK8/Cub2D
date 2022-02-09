@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 13:55:20 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/02 12:50:16 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/09 13:19:48 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ int	main(int ac, char **av)
 {
 	t_param		param;
 
-	if (ac < 2 || !check_file(av[1]))
+	if (ac != 2 || !check_file(av[1]))
 	{
-		ft_putstr_fd("Il n'y pas de *.cub passé en argument !\n", 2);
-		return (1);
+		return (error_arg(ac));
 	}
 	param.cub = av[1];
 	if (!init_param(&param))
@@ -30,7 +29,6 @@ int	main(int ac, char **av)
 	param.img_map.data = mlx_get_data_addr(param.img_map.image,
 			&param.img_map.bpp, &param.img_map.size_line,
 			&param.img_map.endian);
-	display_map(param.map, param);
 	display_multi_angle(&param);
 	mlx_put_image_to_window(param.mlx, param.win, param.img.image, 0, 0);
 	mlx_hook(param.win, 2, 1L << 0, move_hero, &param);
@@ -38,4 +36,13 @@ int	main(int ac, char **av)
 	mlx_loop_hook(param.mlx, display, &param);
 	mlx_loop(param.mlx);
 	return (0);
+}
+
+int	error_arg(int ac)
+{
+	if (ac == 2)
+		ft_putstr_fd("Error\nIl n'y pas de *.cub passé en argument !\n", 2);
+	else
+		ft_putstr_fd("Error\nIl n'y a pas exactement 2 arguments\n", 2);
+	return (1);
 }

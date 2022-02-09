@@ -13,7 +13,7 @@ LIB	= *.h
 
 NAME	= libft.a
 
-CC	= cc
+CC	= gcc
 
 AR	= ar rc
 
@@ -22,24 +22,24 @@ RM	= rm -rf
 CFLAGS	= -Wall -Wextra -Werror
 
 %.o: %.c
-		$(CC) $(CFAGS) $(INC) -o $@ -c $?
+	@$(CC) $(CFAGS) $(INC) -o $@ -c $?
 
 $(NAME):	$(OBJS)
-		$(AR) $(NAME) $(OBJS)
-		ranlib $(NAME)
+	@$(AR) $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
 bonus:
-		clang $(CFLAGS) -c $(SRCS) $(BONUS)
-		ar rc $(NAME) *.o
+	@gcc $(CFLAGS) -c $(SRCS) $(BONUS)
+	@ar rc $(NAME) *.o
 		
 
 all:		$(NAME)
 
 clean:		
-		$(RM) $(OBJS) $(OBJS_B)
+		@$(RM) $(OBJS) $(OBJS_B)
 
 fclean:		clean
-		$(RM) $(NAME)
+		@$(RM) $(NAME)
 
 re:		fclean all
 

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:58:31 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/02 12:58:01 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/09 10:45:41 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	get_param_cub(t_param *param)
 	int		fd;
 
 	fd = open(param->cub, O_RDONLY);
-	if (fd < 0)
+	if (fd < 2)
 	{
 		mlx_destroy_display(param->mlx);
 		free(param->mlx);
@@ -71,12 +71,15 @@ char	*get_element(int fd, t_param *param)
 	char	*line;
 
 	find = 0;
+	line = NULL;
 	while (!find)
 	{
-		if (get_next_line(fd, &line) == -1)
+		if (get_next_line(fd, &line) < 1)
 		{
 			free_tab_checks(param);
 			ft_putstr_fd("Error\nProbleme lecture ou pas de map!\n", 2);
+			if (line)
+				free(line);
 			return (NULL);
 		}
 		if (*line)

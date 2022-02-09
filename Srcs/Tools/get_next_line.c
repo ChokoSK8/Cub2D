@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 08:21:26 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 18:08:15 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/08 13:28:05 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	get_next_line(int fd, char **line)
 	if (!checker_and_init(fd, line))
 		return (-1);
 	ret = read(fd, &buf, 1);
-	while (ret && buf != '\n')
+	while (ret && buf != '\n' && ft_isascii(buf))
 	{
 		*line = ft_strjoin_free_c(*line, buf);
 		if (!*line)
-			return (0);
+			return (-1);
 		ret = read(fd, &buf, 1);
 	}
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/02 12:48:49 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/04 11:32:37 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,8 @@ typedef struct s_point
 	int		y;
 	int		init;
 }			t_point;
+
+int					error_arg(int ac);
 
 double				convert(double degre);
 
