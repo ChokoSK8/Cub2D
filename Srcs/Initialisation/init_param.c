@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/02 14:02:58 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 12:13:13 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int	init_param(t_param *param)
 {
 	param->mlx = mlx_init();
+	if (!param->mlx)
+		return (0);
 	mlx_get_screen_size(param->mlx, &param->max_w, &param->max_h);
+//	if (param->width || param->height
 	param->width = param->max_w * 0.9;
 	param->height = param->max_h * 0.9;
 	init_checks(param);

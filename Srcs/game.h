@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/04 11:32:37 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 11:59:40 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,6 +313,8 @@ int					fill_w_h(t_param *param, char *line, int id);
 int					get_n(char *line);
 
 int					get_param_cub(t_param *param);
+
+int					exit_get_param(t_param *param, int fd);
 
 int					get_no_path(t_param *param, char *line);
 

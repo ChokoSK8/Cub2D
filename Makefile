@@ -23,7 +23,7 @@ SRCS		= Free_param/free_param.c Free_param/destroy_win.c Free_param/free_param_2
 	Display/Dis_walls/dis_walls.c Display/Dis_walls/dis_walls_utils.c Display/Dis_walls/get_texture.c \
 	Gameplay/move_hero.c Gameplay/move_hero_utils.c \
 	Get_distances/get_dist_hori.c Get_distances/get_dist_utils.c Get_distances/get_dist_vert.c Get_distances/get_dist_vert_utils.c \
-	Get_param_cub/get_color.c Get_param_cub/get_map.c Get_param_cub/get_map_utils.c Get_param_cub/get_param_cub.c Get_param_cub/get_textures.c \
+	Get_param_cub/get_color.c Get_param_cub/get_map.c Get_param_cub/get_map_utils.c Get_param_cub/get_param_cub.c Get_param_cub/get_textures.c Get_param_cub/exit_get_param.c \
 	Initialisation/init_hero_utils.c Initialisation/init_param.c Initialisation/init_param_utils.c \
 	Initialisation/Init_walls/init_walls.c Initialisation/Init_walls/error_file_wall.c \
 	Tools/get_next_line.c Tools/ft_putstr_str.c Tools/error_malloc.c \
@@ -45,7 +45,7 @@ RM			= rm -rf
 
 INC			= -I/usr/include -Imlx_linux
 
-FLAGS			= -Wall -Wextra -Werror
+FLAGS			= -Wall -Wextra -Werror #-g3 -fsanitize=address
 
 MLX_FLAGS		= -lm -lX11 -lXext
 
@@ -56,9 +56,7 @@ all:	$(NAME)
 
 mlx:	$(LIB_MLX)
 
-
 $(NAME):	$(OBJS)
-	@echo "[$(C_GREEN)COMPILING Libft$(C_END)]"
 	@make -C Libft
 	@echo "[$(C_CYAN)COMPILING Minilibx$(C_END)]"
 	@make -C Minilibx-linux

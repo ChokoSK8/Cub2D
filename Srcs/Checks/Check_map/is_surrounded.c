@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:30:31 by abrun             #+#    #+#             */
-/*   Updated: 2021/10/29 17:03:02 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 13:26:33 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int	is_surrounded(int height, int width, char **map)
 		pt.x = 0;
 		while (map[pt.y][pt.x])
 		{
-			if (map[pt.y][pt.x] == '0'
+			if ((map[pt.y][pt.x] == '0' || map[pt.y][pt.x] == 'N'
+				|| map[pt.y][pt.x] == 'W' || map[pt.y][pt.x] == 'S'
+				|| map[pt.y][pt.x] == 'E')
 				&& !check_around(map, pt, height, width))
 			{
 				ft_putstr_fd("Error\nLa map n'est pas fermee !\n", 2);

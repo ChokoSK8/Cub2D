@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 14:13:27 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/09 10:45:16 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 11:36:22 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,6 @@ int	check_color(int id, char *line)
 	while (ft_isspace(*line))
 		line++;
 	if (!check_rgb(line))
-	{
-		ft_putstr_char("Error\nErreur de syntaxe pour l'élément : ", id, 2);
-		return (0);
-	}
-	return (1);
-}
-
-int	check_resolution(int id, char *line)
-{
-	if (!ft_strnchr(line, id, 1))
-	{
-		ft_putstr_char("Error\nErreur de syntaxe pour l'élément : ", id, 2);
-		return (0);
-	}
-	line++;
-	while (ft_isspace(*line))
-		line++;
-	while (ft_isdigit(*line))
-		line++;
-	while (ft_isspace(*line))
-		line++;
-	while (ft_isdigit(*line))
-		line++;
-	if (*line)
 	{
 		ft_putstr_char("Error\nErreur de syntaxe pour l'élément : ", id, 2);
 		return (0);
