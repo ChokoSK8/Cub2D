@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/18 11:59:40 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 14:21:56 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,19 @@ typedef struct s_walls
 	t_wall		wall4;
 }			t_walls;
 
+typedef struct s_move
+{
+	double		d;
+	double		w;
+	double		a;
+	double		s;
+	double		r;
+	double		l;
+}			t_move;
+
 typedef struct s_param
 {
+	t_move		move;
 	void		*mlx;
 	void		*win;
 	void		*win_map;
@@ -221,7 +232,9 @@ double				get_distances(t_vect pt_h, t_vect pt_v, double *dist_h,
 
 void				display_multi_angle(t_param *param);
 
-int					move_hero(int key, t_param *param);
+int					keypressed(int key, t_param *param);
+
+int					keyreleased(int key, t_param *param);
 
 int					is_wall_around(t_vect hero, t_img img);
 
@@ -256,7 +269,7 @@ int					get_dir(t_map map);
 
 int					is_pos_hero(char **map);
 
-void				init_img(t_img *img, t_param param);
+int					init_img(t_img *img, t_param param);
 
 void				init_hero(t_player *hero, t_map map);
 
@@ -272,6 +285,10 @@ void				init_wall4_img(t_wall *wall, t_param param);
 
 void				error_file_wall(t_param *param, char *file);
 
+int					error_init_img(t_param *param);
+
+int					error_init_win(t_param *param);
+
 void				init_sprite_img(t_wall *wall, t_param param);
 
 void				put_xpm_to_final(char *data_final, char *data,
@@ -282,6 +299,8 @@ t_point				get_pos_hero(t_map map);
 int					get_angle(t_map map);
 
 int					init_param(t_param *param);
+
+void				init_move(t_move *move);
 
 int					get_dist_max(t_map map);
 

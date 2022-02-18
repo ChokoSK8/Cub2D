@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 13:55:20 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/18 11:25:29 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 14:22:22 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	main(int ac, char **av)
 	display_map(param.map, param);
 	display_multi_angle(&param);
 	mlx_put_image_to_window(param.mlx, param.win, param.img.image, 0, 0);
-	mlx_hook(param.win, 2, 1L << 0, move_hero, &param);
+	mlx_hook(param.win, 2, 1L << 0, keypressed, &param);
+	mlx_hook(param.win, 3, 1L << 1, keyreleased, &param);
 	mlx_hook(param.win, 33, 1L << 17, destroy_win, &param);
 	mlx_loop_hook(param.mlx, display, &param);
 	mlx_loop(param.mlx);

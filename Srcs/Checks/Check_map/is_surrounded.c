@@ -6,11 +6,46 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:30:31 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/18 13:26:33 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 14:25:25 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../game.h"
+
+int check_adjacent(char **map, int x, int y, int line)
+{
+	if (x < 1 || y < 1 || x >= (line))
+		return (EXIT_FAILURE);
+	if (is_whitespace(map[x + 1][y]) || is_whitespace(map[x - 1][y]))
+		return(EXIT_FAILURE);
+	if (is_whitespace(map[x][y + 1]) || is_whitespace(map[x][y - 1]))
+		return (EXIT_FAILURE);
+	return(EXIT_SUCCESS);
+}
+
+bool is_map_open(char **map, int line)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while(map && map[x])
+	{
+		y = 0;
+		while (map[x][y])
+		{
+			if (map[x][y] == '0')
+			{
+				if (check_adjacent(map, x , y, line) == EXIT_FAILURE)
+					return (true);
+			}
+			y++;
+		}
+		x++;
+	}
+	return(false);
+}
 
 int	is_surrounded(int height, int width, char **map)
 {
@@ -35,41 +70,4 @@ int	is_surrounded(int height, int width, char **map)
 		pt.y++;
 	}
 	return (1);
-}
-
-int	check_around(char **map, t_point pt, int height, int width)
-{
-	t_point	wit;
-	t_point	chi;
-
-	wit.y = pt.y - 1;
-	while (wit.y < pt.y + 2)
-	{
-		wit.x = pt.x - 1;
-		while (wit.x < pt.x + 2)
-		{
-			chi.x = wit.x;
-			chi.y = wit.y;
-			while (is_pt_valid(chi, height, width)
-				&& (chi.x != pt.x || chi.y != pt.y)
-				&& map[chi.y][chi.x] != '1')
-			{
-				chi.x -= (pt.x - wit.x);
-				chi.y -= (pt.y - wit.y);
-			}
-			if (!is_pt_valid(chi, height, width))
-				return (0);
-			wit.x++;
-		}
-		wit.y++;
-	}
-	return (1);
-}
-
-int	is_pt_valid(t_point pt, int height, int width)
-{
-	if ((pt.x >= 0 && pt.x < width)
-		&& (pt.y >= 0 && pt.y < height))
-		return (1);
-	return (0);
 }

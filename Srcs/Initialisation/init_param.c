@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/18 12:13:13 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 14:12:32 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	init_param(t_param *param)
 	if (!param->mlx)
 		return (0);
 	mlx_get_screen_size(param->mlx, &param->max_w, &param->max_h);
-//	if (param->width || param->height
 	param->width = param->max_w * 0.9;
 	param->height = param->max_h * 0.9;
 	init_checks(param);
@@ -28,14 +27,18 @@ int	init_param(t_param *param)
 		return (0);
 	init_walls(param);
 	param->d_max = get_dist_max(param->map);
-	init_img(&param->img, *param);
+	if (!init_img(&param->img, *param))
+		return (error_init_img(param));
 	param->win = mlx_new_window(param->mlx, param->width,
 			param->height, "Cub3D");
+	if (!param->win)
+		return (error_init_win(param));
 	init_hero(&param->hero, param->map);
+	init_move(&param->move);
 	return (1);
 }
 
-void	init_img(t_img *img, t_param param)
+int	init_img(t_img *img, t_param param)
 {
 	int		bpp;
 	int		size_line;
@@ -44,12 +47,15 @@ void	init_img(t_img *img, t_param param)
 	char	*img_data;
 
 	image = mlx_new_image(param.mlx, param.width, param.height);
+	if (!image)
+		return (0);
 	img_data = mlx_get_data_addr(image, &bpp, &size_line, &endian);
 	img->bpp = bpp;
 	img->endian = endian;
 	img->size_line = size_line;
 	img->data = img_data;
 	img->image = image;
+	return (1);
 }
 
 int	init_map(t_map *map, char *tab, t_param *param)
