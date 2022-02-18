@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/18 14:12:32 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 14:57:37 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	init_map(t_map *map, char *tab, t_param *param)
 	map->max_width = get_max_width(tab);
 	free(tab);
 	if (!is_pos_hero(map->map)
-		|| !is_surrounded(map->height, map->max_width, map->map)
+		|| !is_surrounded(map->height, map->map)
 		|| !is_characters_ok(map->map)
 		|| is_space_in_map(map->map, map->height, map->max_width))
 	{

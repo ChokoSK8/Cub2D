@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/18 14:21:56 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 14:56:27 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -390,7 +390,7 @@ void				free_init_walls(t_param *param);
 
 int					free_wall(t_param *param, void *img);
 
-int					is_surrounded(int height, int width, char **map);
+int					is_surrounded(int height, char **map);
 
 int					check_around(char **map, t_point pt, int height, int width);
 

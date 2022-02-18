@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:46:48 by abrun             #+#    #+#             */
-/*   Updated: 2022/01/31 12:34:28 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/18 16:17:34 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ double	get_angle_right(int angle_h, double counter)
 	double	angle;
 
 	angle = angle_h + counter;
-	if ((int)angle >= 360)
+	if (angle >= 360.0000)
 		angle -= 360;
-	if ((int)angle < 0)
+	if (angle < 0.0000)
 		angle = 360 + angle;
 	return (angle);
 }
