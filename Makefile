@@ -1,81 +1,133 @@
+# Generated with GenMake
+# Arthur-TRT - https://github.com/arthur-trt/genMake
+# genmake vv1.1.4
+
+#Compiler and Linker
+CC					:= clang
+CXX					:= c++
+ifeq ($(shell uname -s),Darwin)
+	CC				:= gcc
+	CXX				:= g++
+endif
+
+#The Target Binary Program
+TARGET				:= cub3d
+TARGET_BONUS		:= cub3d-bonus
+
+BUILD				:= release
+
+include sources.mk
+
+#The Directories, Source, Includes, Objects, Binary and Resources
+SRCDIR				:= Srcs
+INCDIR				:= .
+BUILDDIR			:= obj
+TARGETDIR			:= .
+SRCEXT				:= c
+DEPEXT				:= d
+OBJEXT				:= o
+
+OBJECTS				:= $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJEXT)))
+OBJECTS_BONUS		:= $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES_BONUS:.$(SRCEXT)=.$(OBJEXT)))
+
+#Flags, Libraries and Includes
+cflags.release		:= -Wall -Werror -Wextra
+cflags.valgrind		:= -Wall -Werror -Wextra -DDEBUG -ggdb
+cflags.debug		:= -Wall -Werror -Wextra -DDEBUG -ggdb -fsanitize=address -fno-omit-frame-pointer
+CFLAGS				:= $(cflags.$(BUILD))
+CPPFLAGS			:= $(cflags.$(BUILD)) -std=c++98
+
+lib.release			:=  -LLibft -lft -LMinilibx-linux -lmlx -I/usr/include -Imlx_linux -lm -lX11 -lXext
+lib.valgrind		:= $(lib.release)
+lib.debug			:= $(lib.release) -fsanitize=address -fno-omit-frame-pointer
+LIB					:= $(lib.$(BUILD))
+
+INC					:= -I$(INCDIR) -I/usr/local/include
+INCDEP				:= -I$(INCDIR)
+
 # Colors
-C_GREY		=	\e[1;30m
-C_RED		=	\e[1;31m
-C_GREEN		=	\e[1;32m
-C_YELLOW	=	\e[1;33m
-C_BLUE		=	\e[1;34m
-C_PURPLE	=	\e[1;35m
-C_CYAN		=	\e[1;36m
-C_WHITE		=	\e[1;37m
-C_END		=	\e[0m
+C_RESET				:= \033[0m
+C_PENDING			:= \033[0;36m
+C_SUCCESS			:= \033[0;32m
 
-NAME		= cub3D
+# Multi platforms
+ECHO				:= echo
 
-LIB_MLX		= Minilibx-linux/libmlx.a Minilibx-linux/libmlx_Linux.a
+# Escape sequences (ANSI/VT100)
+ES_ERASE			:= "\033[1A\033[2K\033[1A"
+ERASE				:= $(ECHO) $(ES_ERASE)
 
-LIB		= Libft/libft.a
+GREP				:= grep --color=auto --exclude-dir=.git
+NORMINETTE			:= norminette `ls`
 
-SRCS		= Free_param/free_param.c Free_param/destroy_win.c Free_param/free_param_2.c\
-	Checks/Check_elements/check_all.c Checks/Check_elements/check_elements.c \
-	Checks/Check_map/check_map.c Checks/Check_map/is_surrounded.c Checks/Check_map/is_space_in_map.c \
-	Checks/check_file.c \
-	Display/dis_background.c Display/dis_hero.c Display/dis_map.c \
-	Display/Dis_walls/dis_walls.c Display/Dis_walls/dis_walls_utils.c Display/Dis_walls/get_texture.c \
-	Gameplay/move_hero.c Gameplay/move_hero_utils.c \
-	Get_distances/get_dist_hori.c Get_distances/get_dist_utils.c Get_distances/get_dist_vert.c Get_distances/get_dist_vert_utils.c \
-	Get_param_cub/get_color.c Get_param_cub/get_map.c Get_param_cub/get_map_utils.c Get_param_cub/get_param_cub.c Get_param_cub/get_textures.c Get_param_cub/exit_get_param.c \
-	Initialisation/init_hero_utils.c Initialisation/init_param.c Initialisation/init_param_utils.c Initialisation/error_init_param.c \
-	Initialisation/Init_walls/init_walls.c \
-	Tools/get_next_line.c Tools/ft_putstr_str.c Tools/error_malloc.c \
-	main.c
+# Default Make
+all: libft minilibx $(TARGETDIR)/$(TARGET)
+	@$(ERASE)
+	@$(ECHO) "$(TARGET)\t\t[$(C_SUCCESS)✅$(C_RESET)]"
+	@$(ECHO) "$(C_SUCCESS)All done, compilation successful! 👌 $(C_RESET)"
 
-MLX_SRCS	= Mlx_fcts/mlx_shaders.c Mlx_fcts/mlx_new_window.m Mlx_fcts/mlx_init_loop.m Mlx_fcts/mlx_new_image.m Mlx_fcts/mlx_xpm.c Mlx_fcts/mlx_int_str_to_wordtab.c
+# Bonus rule
+bonus: CFLAGS += -DBONUS
+bonus: libft minilibx $(TARGETDIR)/$(TARGET_BONUS)
+	@$(ERASE)
+	@$(ECHO) "$(TARGET)\t\t[$(C_SUCCESS)✅$(C_RESET)]"
+	@$(ECHO) "$(C_SUCCESS)All done, compilation successful with bonus! 👌 $(C_RESET)"
 
-PATH_SRCS	= Srcs/
+# Remake
+re: fclean all
 
-_SRCS = ${addprefix ${PATH_SRCS}, ${SRCS}}
-
-OBJS		= $(_SRCS:.c=.o)
-
-MLX_OBJS	= $(MLX_SRCS:.c=.o)
-
-MLX_OBJS_M	= $(MLX_OBJS:.m=.o)
-
-RM			= rm -rf
-
-INC			= -I/usr/include -Imlx_linux
-
-FLAGS			= -Wall -Wextra -Werror #-g3 -fsanitize=address
-
-MLX_FLAGS		= -lm -lX11 -lXext
-
-%.o: %.c
-		@gcc -g $(FLAGS) $(INC) -o $@ -c $?
-
-all:	$(NAME)
-
-mlx:	$(LIB_MLX)
-
-$(NAME):	$(OBJS)
-	@make -C Libft
-	@echo "[$(C_CYAN)COMPILING Minilibx$(C_END)]"
-	@make -C Minilibx-linux
-	@echo "[$(C_YELLOW)CREATING Cub3D$(C_END)]"
-	@gcc $(FLAGS) -o $(NAME) $(OBJS) $(LIB) $(LIB_MLX) $(MLX_FLAGS)
-	@echo "[$(C_PURPLE)Cub3D ready to be used$(C_END)]"
-
+# Clean only Objects
 clean:
-	@echo "[$(C_BLUE)CLEANING objects$(C_END)]"
-	@$(RM) $(OBJS)
-	@echo "[$(C_RED)CLEANING Libft$(C_END)]"
-	@make clean -C Libft
-	@echo "[$(C_WHITE)CLEANING Minilibx$(C_END)]"
-	@make clean -C Minilibx-linux
+	@$(RM) -f *.d *.o
+	@$(RM) -rf $(BUILDDIR)
+	@make $@ -C Libft
+	@make $@ -C Minilibx-linux
 
-fclean:		clean
-	@$(RM) $(NAME)
-	@make fclean -C Libft
 
-re:		fclean all
+# Full Clean, Objects and Binaries
+fclean: clean
+	@$(RM) -rf $(TARGET)
+	@make $@ -C Libft
 
-.PHONY:		all clean fclean re
+
+# Pull in dependency info for *existing* .o files
+-include $(OBJECTS:.$(OBJEXT)=.$(DEPEXT))
+
+# Link
+$(TARGETDIR)/$(TARGET): $(OBJECTS)
+	@mkdir -p $(TARGETDIR)
+	$(CC) -o $(TARGETDIR)/$(TARGET) $^ $(LIB)
+
+# Link Bonus
+$(TARGETDIR)/$(TARGET_BONUS): $(OBJECTS_BONUS)
+	@mkdir -p $(TARGETDIR)
+	$(CC) -o $(TARGETDIR)/$(TARGET) $^ $(LIB)
+
+$(BUILDIR):
+	@mkdir -p $@
+
+# Compile
+$(BUILDDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(dir $@)
+	@$(ECHO) "$(TARGET)\t\t[$(C_PENDING)⏳$(C_RESET)]"
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
+	@$(CC) $(CFLAGS) $(INCDEP) -MM $(SRCDIR)/$*.$(SRCEXT) > $(BUILDDIR)/$*.$(DEPEXT)
+	@$(ERASE)
+	@$(ERASE)
+	@cp -f $(BUILDDIR)/$*.$(DEPEXT) $(BUILDDIR)/$*.$(DEPEXT).tmp
+	@sed -e 's|.*:|$(BUILDDIR)/$*.$(OBJEXT):|' < $(BUILDDIR)/$*.$(DEPEXT).tmp > $(BUILDDIR)/$*.$(DEPEXT)
+	@sed -e 's/.*://' -e 's/\\$$//' < $(BUILDDIR)/$*.$(DEPEXT).tmp | fmt -1 | sed -e 's/^ *//' -e 's/$$/:/' >> $(BUILDDIR)/$*.$(DEPEXT)
+	@rm -f $(BUILDDIR)/$*.$(DEPEXT).tmp
+
+libft:
+	@make -C Libft
+
+minilibx:
+	@make -C Minilibx-linux
+
+
+norm:
+	@$(NORMINETTE) | $(GREP) -v "Not a valid file" | $(GREP) "Error\|Warning" -B 1 || true
+
+# Non-File Targets
+.PHONY: all re clean fclean norm bonus libft minilibx

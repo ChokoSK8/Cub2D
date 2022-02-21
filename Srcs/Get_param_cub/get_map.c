@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:59:57 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/18 11:51:32 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/21 16:30:52 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	fill_tab_map(char *line, int fd, t_param *param)
 		if (!tab || ret == -1 || (ret && !*line))
 			return (error_map(line, param, tab));
 	}
+	tab = ft_strjoin_free_bs(tab, line); //sans ca ca segv
 	free(line);
 	tab[ft_strlen(tab) - 1] = 0;
 	param->tab = tab;
