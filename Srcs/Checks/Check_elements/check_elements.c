@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 14:13:27 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/18 11:36:22 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/22 11:26:59 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_texture(char *id, char *line, int ret)
 	line += id_len;
 	while (ft_isspace(*line))
 		line++;
-	if (!check_syntaxe("./", 2, line, id))
+	if (!check_syntaxe("./", 2, line, id)) //le path peut etre absolu, ca doit pas retourner une erreur
 		return (0);
 	line += 2;
 	fd = open(line, O_RDONLY);

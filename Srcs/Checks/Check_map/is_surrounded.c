@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:30:31 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/21 17:01:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2022/02/22 11:24:41 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_whitespace(char c)
 
 int	check_adjacent(char **map, int x, int y, int line)
 {
-	if (x < 1 || y < 1 )
+	if (x < 1 || y < 1 || x >= line)
 		return (EXIT_FAILURE);
 	if (map[x + 1] && (is_whitespace(map[x + 1][y]) || is_whitespace(map[x - 1][y])))
 		return (EXIT_FAILURE);
