@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:00:55 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/24 13:32:48 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/24 15:27:58 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	keypressed(int key, t_param *param)
 {
 	if (key == 65307)
 	{
+		mlx_do_key_autorepeaton(param->mlx);
 		free_param(param);
 		mlx_destroy_window(param->mlx, param->win);
 		mlx_destroy_display(param->mlx);
@@ -23,17 +24,17 @@ int	keypressed(int key, t_param *param)
 		exit(0);
 	}
 	if (key == 's')
-		param->move.s = 1;
+		move_key_back(&param->hero, param->img_map, &param->move.s);
 	else if (key == 'w')
-		param->move.w = 1;
+		move_key_forward(&param->hero, param->img_map, &param->move.w);
 	else if (key == 'a')
-		param->move.a = 1;
+		move_key_left(&param->hero, param->img_map, &param->move.a);
 	else if (key == 'd')
-		param->move.d = 1;
+		move_key_right(&param->hero, param->img_map, &param->move.d);
 	else if (key == 65363)
-		param->move.r = 1;
+		pov_right(&param->move.r, &param->hero);
 	else if (key == 65361)
-		param->move.l = 1;
+		pov_left(&param->move.l, &param->hero);
 	return (1);
 }
 
@@ -54,10 +55,17 @@ int	keyreleased(int key, t_param *param)
 	return (1);
 }
 
-void	move_key_left(t_player *hero, t_img img)
+void	move_key_left(t_player *hero, t_img img, int *l)
 {
 	t_vect	end;
 
+	if (*l == 1)
+	{
+		*l = 2;
+		return ;
+	}
+	if (*l == 0)
+		*l = 1;
 	end.y = -hero->speed
 		* cos(convert(hero->angle + 90));
 	end.x = -hero->speed
@@ -71,10 +79,17 @@ void	move_key_left(t_player *hero, t_img img)
 	}
 }
 
-void	move_key_right(t_player *hero, t_img img)
+void	move_key_right(t_player *hero, t_img img, int *l)
 {
 	t_vect	end;
 
+	if (*l == 1)
+	{
+		*l = 2;
+		return ;
+	}
+	if (*l == 0)
+		*l = 1;
 	end.y = -hero->speed
 		* cos(convert(hero->angle - 90));
 	end.x = -hero->speed
@@ -88,11 +103,18 @@ void	move_key_right(t_player *hero, t_img img)
 	}
 }
 
-void	move_key_forward(t_player *hero, t_img img)
+void	move_key_forward(t_player *hero, t_img img, int *l)
 {
 	t_vect	end;
 	double	move;
 
+	if (*l == 1)
+	{
+		*l = 2;
+		return ;
+	}
+	if (*l == 0)
+		*l = 1;
 	move = hero->speed * 3;
 	end.y = -move * cos(convert(hero->angle));
 	end.x = -move * sin(convert(hero->angle));

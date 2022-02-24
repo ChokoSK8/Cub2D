@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_win.c                                      :+:      :+:    :+:   */
+/*   move_hero_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 10:10:00 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/24 14:41:41 by abrun            ###   ########.fr       */
+/*   Created: 2022/02/24 15:11:26 by abrun             #+#    #+#             */
+/*   Updated: 2022/02/24 15:25:53 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
 
-int	destroy_win(t_param *param)
+void	pov_left(int *l, t_player *hero)
 {
-	free_param(param);
-	mlx_do_key_autorepeaton(param->mlx);
-	mlx_destroy_window(param->mlx, param->win);
-	mlx_destroy_display(param->mlx);
-	free(param->mlx);
-	exit(0);
-	return (0);
+	if (*l == 1)
+	{
+		*l = 2;
+		return ;
+	}
+	if (*l == 0)
+		*l = 1;
+	hero->angle += 1;
+}
+
+void	pov_right(int *l, t_player *hero)
+{
+	if (*l == 1)
+	{
+		*l = 2;
+		return ;
+	}
+	if (*l == 0)
+		*l = 1;
+	hero->angle -= 1;
 }

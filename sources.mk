@@ -66,6 +66,7 @@ SOURCES		+=                                        		\
 
 SOURCES		+=                                        		\
 		Srcs/Gameplay/move_hero_utils.c                  	\
+		Srcs/Gameplay/move_hero_utils_2.c                	\
 		Srcs/Gameplay/move_hero.c                        	\
 
 

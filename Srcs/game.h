@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2022/02/24 13:35:58 by abrun            ###   ########.fr       */
+/*   Updated: 2022/02/24 15:21:29 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,13 +238,13 @@ int					keyreleased(int key, t_param *param);
 
 int					is_wall_around(t_player hero, t_img img, t_vect end);
 
-void				move_key_left(t_player *hero, t_img img);
+void				move_key_left(t_player *hero, t_img img, int *l);
 
-void				move_key_right(t_player *hero, t_img img);
+void				move_key_right(t_player *hero, t_img img, int *l);
 
-void				move_key_forward(t_player *hero, t_img img);
+void				move_key_forward(t_player *hero, t_img img, int *l);
 
-void				move_key_back(t_player *hero, t_img img);
+void				move_key_back(t_player *hero, t_img img, int *l);
 
 size_t				get_height(char *tab);
 
@@ -543,4 +543,8 @@ int					destroy_win(t_param *param);
 int					display(t_param *param);
 
 int					error_malloc(void);
+
+void				pov_left(int *l, t_player *hero);
+
+void				pov_right(int *l, t_player *hero);
 #endif
