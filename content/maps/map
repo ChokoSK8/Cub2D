@@ -1,0 +1,13 @@
+NO ./content/textures/barrel.xpm
+SO ./content/textures/bluestone.xpm
+WE ./content/textures/redbrick.xpm
+EA ./content/textures/door.xpm
+F 75,74,74
+C 1,10,254
+
+111111
+100001
+100E01
+100001
+100001
+111111
